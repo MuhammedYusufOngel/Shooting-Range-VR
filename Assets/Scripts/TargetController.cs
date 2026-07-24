@@ -10,6 +10,7 @@ public class TargetController : MonoBehaviour
         
         if(other.gameObject.tag == "Bullet")
         {
+            PlayerController.instance.AddScore();
             Destroy(gameObject);
         }
     }

@@ -5,6 +5,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 public class FireBulletOnActivate : MonoBehaviour
 {
     public GameObject bullet;
+    public ParticleSystem muzzleFlash;
     public Transform firePoint;
     public float bulletSpeed = 20f;
 
@@ -26,5 +27,8 @@ public class FireBulletOnActivate : MonoBehaviour
         Rigidbody rb = newBullet.GetComponent<Rigidbody>();
         rb.linearVelocity = firePoint.forward * bulletSpeed;
         Destroy(newBullet, 5f); // Destroy the bullet after 5 seconds to prevent clutter
+        PlayerController.instance.AddBullet();
+        if(muzzleFlash != null)
+            muzzleFlash.Play();
     }
 }
