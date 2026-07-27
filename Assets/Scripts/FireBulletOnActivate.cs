@@ -9,9 +9,11 @@ public class FireBulletOnActivate : MonoBehaviour
     public Transform firePoint;
     public float bulletSpeed = 20f;
 
+    private XRGrabInteractable grabInteractable;
+
     void Start()
     {
-        XRGrabInteractable grabInteractable = GetComponent<XRGrabInteractable>();
+        grabInteractable = GetComponent<XRGrabInteractable>();
         grabInteractable.activated.AddListener(FireBullet);
     }
 
@@ -26,7 +28,7 @@ public class FireBulletOnActivate : MonoBehaviour
         GameObject newBullet = Instantiate(bullet, firePoint.position, firePoint.rotation);
         Rigidbody rb = newBullet.GetComponent<Rigidbody>();
         rb.linearVelocity = firePoint.forward * bulletSpeed;
-        Destroy(newBullet, 5f); // Destroy the bullet after 5 seconds to prevent clutter
+        Destroy(newBullet, 5f);
         PlayerController.instance.AddBullet();
         if(muzzleFlash != null)
             muzzleFlash.Play();
