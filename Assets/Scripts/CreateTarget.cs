@@ -21,8 +21,9 @@ public class CreateTarget : MonoBehaviour
 
     void Update()
     {
-        if(transform.childCount < 2)
+        if(PlayerController.instance.GetIsTimeRunning() && transform.childCount < 2)
         {
+            _wallZ = _wall.position.z;
             var newTarget = Instantiate(_target, transform);
 
             var targetX = UnityEngine.Random.Range(_wallX - _wallWidth / 2, _wallX + _wallWidth / 2);
@@ -31,6 +32,14 @@ public class CreateTarget : MonoBehaviour
 
             newTarget.transform.position = new Vector3(targetX, targetY, targetZ);
             
+        }
+
+        if(PlayerController.instance.GetIsNextLevel() == -1)
+        {
+            if(transform.childCount > 1)
+            {
+                Destroy(transform.GetChild(1).gameObject);
+            }
         }
     }
 }

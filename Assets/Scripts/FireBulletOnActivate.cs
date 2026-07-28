@@ -8,6 +8,7 @@ public class FireBulletOnActivate : MonoBehaviour
     public ParticleSystem muzzleFlash;
     public Transform firePoint;
     public float bulletSpeed = 20f;
+    public AudioSource gunShotSound;
 
     private XRGrabInteractable grabInteractable;
 
@@ -30,6 +31,7 @@ public class FireBulletOnActivate : MonoBehaviour
         rb.linearVelocity = firePoint.forward * bulletSpeed;
         Destroy(newBullet, 5f);
         PlayerController.instance.AddBullet();
+        gunShotSound.Play();
         if(muzzleFlash != null)
             muzzleFlash.Play();
     }

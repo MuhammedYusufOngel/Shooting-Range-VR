@@ -20,20 +20,21 @@ public class CounterController : MonoBehaviour
     {
         if(PlayerController.instance.GetCountdown())
         {
-            elapsedTime -= Time.deltaTime;
-
             if (elapsedTime <= 0)
             {
                 PlayerController.instance.StopCountdown();
                 PlayerController.instance.StartTime();
+
+                elapsedTime = 3f;
             }
 
-            if (elapsedTime % 1 == 0)
-            {
-                countdownText.text = elapsedTime.ToString();
-            }
+            countdownText.text = Mathf.Ceil(elapsedTime).ToString();
+
+            Debug.Log("Countdown: " + elapsedTime);
 
             countdownCanvas.SetActive(true);
+
+            elapsedTime -= Time.deltaTime;
 
             countdownCanvas.transform.position = head.position + new Vector3(head.forward.x, 0, head.forward.z).normalized * spawnDistance;
 
