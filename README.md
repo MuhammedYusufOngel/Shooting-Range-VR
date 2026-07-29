@@ -7,7 +7,7 @@ The project demonstrates core XR development patterns, including custom interact
 
 ## Demo
 <!-- Replace with actual demo video, GIF, or screenshot -->
-![Shooting Range VR Demo Placeholder](https://youtu.be/gWEm168imdw)
+[![Shooting Range VR Demo Placeholder](https://youtu.be/gWEm168imdw)](https://youtu.be/gWEm168imdw)
 
 ## Key Features
 - **Event-Driven Firearm Mechanics**: Custom grab interaction logic triggers projectile spawning, applies linear velocity, fires muzzle flash particle effects, plays shot audio, and logs shot telemetry upon trigger input.
