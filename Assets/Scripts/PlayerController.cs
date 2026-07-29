@@ -7,10 +7,12 @@ public class PlayerController : MonoBehaviour
     public TMP_Text scoreText;
     public TMP_Text bulletText;
     public TMP_Text timeText;
+    public TMP_Text scoreBulletText;
     public bool isCountdown = false;
     public Transform wall;
 
     private int score;
+    private static int maxScore = 10;
     private int bullets;
     private float elapsedTime = 30f;
     private bool isTimeRunning = false;
@@ -26,19 +28,22 @@ public class PlayerController : MonoBehaviour
     {
         score++;
 
-        if(score >= 10)
+        if(score - (maxScore * level) >= 0)
         {
             isNextLevel = 1;
-            score = 0;
             StopTime();
         }
         scoreText.text = "Your score\n" + score.ToString();
+        string scorePerBullet = ((float)score / bullets).ToString("F2");
+        scoreBulletText.text = "Score/Bullet\n" + scorePerBullet;
     }
 
     public void AddBullet()
     {
         bullets++;
         bulletText.text = "Bullets\n" + bullets.ToString();
+        string scorePerBullet = ((float)score / bullets).ToString("F2");
+        scoreBulletText.text = "Score/Bullet\n" + scorePerBullet;
     }
 
     public void LevelDesign()
@@ -56,8 +61,6 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Level design for retry");
 
             wall.localPosition = new Vector3(-22f, 2.5f, 2f);
-            score = 0;
-            isNextLevel = 0;
         }
     }
 
@@ -75,6 +78,19 @@ public class PlayerController : MonoBehaviour
     {
         isCountdown = false;
         Debug.Log("Countdown stopped");
+    }
+
+    public void RestartGame()
+    {
+        isNextLevel = -1;
+        StopTime();
+        SetLevel(1);
+        LevelDesign();
+        SetIsNextLevel(0);
+        StartCountdown();
+        SetScore(0);
+        SetBullets(0);
+        Debug.Log("Game restarted");
     }
 
     public void StartTime()
@@ -118,6 +134,20 @@ public class PlayerController : MonoBehaviour
         return level;
     }
 
+    public void SetScore(int value)
+    {
+        score = value;
+        scoreText.text = "Your score\n" + score.ToString();
+        Debug.Log("Score set to: " + score);
+    }
+
+    public void SetBullets(int value)
+    {
+        bullets = value;
+        bulletText.text = "Bullets\n" + bullets.ToString();
+        Debug.Log("Bullets set to: " + bullets);
+    }
+
     public void Update()
     {
         if(isTimeRunning)
@@ -132,7 +162,6 @@ public class PlayerController : MonoBehaviour
 
             timeText.text = "Time\n" + Mathf.Ceil(elapsedTime).ToString();
         }
-
     }
 
 }

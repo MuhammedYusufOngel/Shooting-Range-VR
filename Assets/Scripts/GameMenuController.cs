@@ -17,15 +17,14 @@ public class GameMenuController : MonoBehaviour
         if(showButton.action.WasPressedThisFrame())
         {
             menu.SetActive(true);
-
-            menu.transform.position = head.position + new Vector3(head.forward.x, 0, head.forward.z).normalized * spawnDistance;
         }
 
         if(showButton.action.WasReleasedThisFrame())
         {
             menu.SetActive(false);
         }
-
+        
+        menu.transform.position = head.position + new Vector3(head.forward.x, 0, head.forward.z).normalized * spawnDistance;
         menu.transform.LookAt(new Vector3(head.position.x, menu.transform.position.y, head.position.z));
 
         menu.transform.forward *= -1;

@@ -7,6 +7,10 @@ public class GunGrabController : XRGrabInteractable
     protected override void OnSelectEntered(SelectEnterEventArgs args)
     {
         base.OnSelectEntered(args);
-        PlayerController.instance.StartCountdown();
+        
+        if(!PlayerController.instance.GetIsTimeRunning())
+        {
+            PlayerController.instance.StartCountdown();
+        }
     }
 }

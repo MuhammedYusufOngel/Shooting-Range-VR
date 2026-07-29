@@ -7,6 +7,7 @@ public class EpisodeController : MonoBehaviour
     public float spawnDistance = 2f;
     public GameObject episodeCanvas;
     public TMP_Text episodeText;
+    public GameObject menuCanvas;
 
     private float elapsedTime = 0f;
     void Start()
@@ -41,11 +42,9 @@ public class EpisodeController : MonoBehaviour
 
             if(elapsedTime >= 2f)
             {
-                PlayerController.instance.LevelDesign();
-                PlayerController.instance.SetLevel(1);
-                PlayerController.instance.SetIsNextLevel(0);
-                PlayerController.instance.StartCountdown();
                 episodeCanvas.SetActive(false);
+                menuCanvas.SetActive(true);
+                PlayerController.instance.SetIsNextLevel(0);
                 elapsedTime = 0f;
             }
         }
