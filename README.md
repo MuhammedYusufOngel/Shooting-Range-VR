@@ -6,7 +6,7 @@ Shooting Range VR is a Virtual Reality target shooting application built with Un
 The project demonstrates core XR development patterns, including custom interaction handlers, event-driven firearm mechanics, physics-based target destruction, real-time spatial UI positioning, and live performance metrics tracking.
 
 ## Demo
-<!-- Replace with actual demo video, GIF, or screenshot -->
+You can click and watch the demo.
 [![Shooting Range VR Demo Placeholder](https://img.youtube.com/vi/gWEm168imdw/maxresdefault.jpg)](https://youtu.be/gWEm168imdw)
 
 ## Key Features
